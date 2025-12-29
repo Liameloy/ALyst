@@ -2,7 +2,7 @@
 
 from src import Statistics
 
-test_set = [1, 2, 4, 2, 5]
+test_set = []
 
 stat = Statistics(test_set)
 

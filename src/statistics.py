@@ -60,6 +60,8 @@ class Statistics:
         return amount_classes
 
     def calculate_span_width(self):
+        if self.dataset == []:
+            return 0
         sorted_dataset = sorted(self.dataset)
         span_width = sorted_dataset[len(sorted_dataset)-1]-sorted_dataset[0]
         return span_width
