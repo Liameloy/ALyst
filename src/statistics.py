@@ -1,5 +1,8 @@
 import math
 
+from src.dataclass import Dataclass
+
+
 class Statistics:
 
     def __init__(self, dataset):
@@ -72,10 +75,47 @@ class Statistics:
             return 0
         span_width = self.calculate_span_width()
         class_width = span_width/amount_classes
-        return class_width
+        # nice rounding algorithm
+        extracted_scale = 10 ** math.floor(math.log10(class_width))
+        scaled_width = class_width / extracted_scale
+        if scaled_width <= 1:
+            round_res = 1
+        elif scaled_width <= 2:
+            round_res = 2
+        elif scaled_width <= 5:
+            round_res = 5
+        else:
+            round_res = 10
+        return round_res * extracted_scale
 
-    def classify_dataset(self):
+    def create_data_classes(self):
+        class_width = self.calculate_class_width()
+        data_class_index = 1
+        data_classes = []
+        start = min(self.dataset) if self.dataset != [] else 0
+        max_elem = max(self.dataset) if self.dataset != [] else len(self.dataset)
+        while start < max_elem:
+            end = start + class_width
+            data_classes.append(Dataclass(data_class_index, start, end, class_width))
+            start = end
+            data_class_index += 1
+        return data_classes
+
+    #returns dictionary with data elements as keys and class as values
+    def classify_dataset_data_to_classes(self):
         classified_dataset = {}
+        data_classes = self.create_data_classes()
+        for element in self.dataset:
+            if element not in classified_dataset:
+                for data_class in data_classes:
+                    if data_class.check_if_elem_in_dataclass(element):
+                        classified_dataset[element] = data_class
+        return classified_dataset
+
+    #returns dictionary with classes as elements and element-lists as values
+    def classify_dataset_classes_to_data(self):
+        classified_dataset = {}
+        return classified_dataset
 
 
     def full_run(self):
