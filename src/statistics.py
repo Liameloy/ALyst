@@ -114,9 +114,14 @@ class Statistics:
 
     #returns dictionary with classes as elements and element-lists as values
     def classify_dataset_classes_to_data(self):
-        classified_dataset = {}
+        data_classes = self.create_data_classes()
+        classified_dataset = {dataclass.class_index: [] for dataclass in data_classes}
+        for i, data_class in enumerate(data_classes):
+            is_last = i == len(data_classes)-1
+            for element in self.dataset:
+                if data_class.check_if_elem_in_dataclass(element, is_last):
+                    classified_dataset[data_class.class_index].append(element)
         return classified_dataset
-
 
     def full_run(self):
         print("Full run")

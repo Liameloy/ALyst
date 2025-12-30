@@ -1,5 +1,3 @@
-from sqlalchemy import and_
-
 
 class Dataclass:
     def __init__(self, class_index, class_lower_bound, class_upper_bound, class_width):
@@ -21,11 +19,17 @@ class Dataclass:
     def print_class_information(self):
         print(self)
 
-    def check_if_elem_in_dataclass(self, element):
+    def check_if_elem_in_dataclass(self, element, is_last=False):
         if element is None:
             return False
-        if self.class_lower_bound <= element <= self.class_upper_bound:
-            return True
+        if is_last:
+            if self.class_lower_bound <= element <= self.class_upper_bound:
+                return True
+            else:
+                return False
         else:
-            return False
+            if self.class_lower_bound <= element < self.class_upper_bound:
+                return True
+            else:
+                return False
 
