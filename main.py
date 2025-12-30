@@ -13,6 +13,7 @@ integer_stat = Statistics(integer_set)
 floating_stat = Statistics(floating_set)
 big_stat = Statistics(big_set)
 
+"""
 print(empty_stat.full_run())
 
 print(integer_stat.full_run())
@@ -20,7 +21,13 @@ print(integer_stat.full_run())
 print(floating_stat.full_run())
 
 print(big_stat.full_run())
+"""
+print(empty_stat.create_data_classes())
+print(integer_stat.create_data_classes())
+print(floating_stat.create_data_classes())
+print(big_stat.create_data_classes())
 
-
-print(math.ceil(3.25))
-
+print(empty_stat.classify_dataset_data_to_classes())
+print(integer_stat.classify_dataset_data_to_classes())
+print(floating_stat.classify_dataset_data_to_classes())
+print(big_stat.classify_dataset_data_to_classes())

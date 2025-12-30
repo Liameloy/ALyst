@@ -1,4 +1,5 @@
 from src.statistics import Statistics
+from src.dataclass import Dataclass
 
 empty_set = []
 integer_set = [1,2,2,3,3,4,5,5,5,6,7,7]
@@ -130,6 +131,28 @@ def test_calculate_span_width():
 
 def test_calculate_class_width():
     assert empty_stat.calculate_class_width() == 0
-    assert integer_stat.calculate_class_width() == 1.5
-    assert floating_stat.calculate_class_width() == 1.6366429289625386
-    assert big_stat.calculate_class_width() == 14.682285155394313
+    assert integer_stat.calculate_class_width() == 2
+    assert floating_stat.calculate_class_width() == 2
+    assert big_stat.calculate_class_width() == 20
+
+def test_create_data_classes():
+    assert empty_stat.create_data_classes() == []
+    assert (integer_stat.create_data_classes() ==
+            [Dataclass(class_index = 1, class_lower_bound=1, class_upper_bound=3, class_width=2),
+            Dataclass(class_index = 2, class_lower_bound=3, class_upper_bound=5, class_width=2),
+            Dataclass(class_index = 3, class_lower_bound=5, class_upper_bound=7, class_width=2)])
+    assert (floating_stat.create_data_classes() ==
+            [Dataclass(class_index = 1, class_lower_bound=1.1, class_upper_bound=3.1, class_width=2),
+            Dataclass(class_index = 2, class_lower_bound=3.1, class_upper_bound=5.1, class_width=2),
+            Dataclass(class_index = 3, class_lower_bound=5.1, class_upper_bound=7.1, class_width=2)])
+    assert (big_stat.create_data_classes() ==
+            [Dataclass(class_index = 1, class_lower_bound=2, class_upper_bound=22, class_width=20),
+            Dataclass(class_index = 2, class_lower_bound=22, class_upper_bound=42, class_width=20),
+            Dataclass(class_index = 3, class_lower_bound=42, class_upper_bound=62, class_width=20),
+            Dataclass(class_index = 4, class_lower_bound=62, class_upper_bound=82, class_width=20),
+            Dataclass(class_index = 5, class_lower_bound=82, class_upper_bound=102, class_width=20)]
+)
+
+#def test_classify_dataset_data_to_classes():
+
+#def test_classify_dataset_classes_to_data():
