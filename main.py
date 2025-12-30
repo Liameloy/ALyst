@@ -1,4 +1,4 @@
-
+import math
 
 from src import Statistics
 
@@ -20,4 +20,7 @@ print(integer_stat.full_run())
 print(floating_stat.full_run())
 
 print(big_stat.full_run())
+
+
+print(math.ceil(3.25))
 
