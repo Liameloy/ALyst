@@ -117,10 +117,10 @@ def test_calculate_relative_sum_frequency():
         big_stat.calculate_and_bundle_relative_frequencies().values())
 
 def test_calculate_amount_classes():
-    assert empty_stat.calculate_amount_classes() == 0.0
-    assert integer_stat.calculate_amount_classes() == 3.4641016151377544
-    assert floating_stat.calculate_amount_classes() == 3.605551275463989
-    assert big_stat.calculate_amount_classes() == 6.606601014308861
+    assert empty_stat.calculate_amount_classes() == 0
+    assert integer_stat.calculate_amount_classes() == 4
+    assert floating_stat.calculate_amount_classes() == 4
+    assert big_stat.calculate_amount_classes() == 7
 
 def test_calculate_span_width():
     assert empty_stat.calculate_span_width() == 0
@@ -130,6 +130,6 @@ def test_calculate_span_width():
 
 def test_calculate_class_width():
     assert empty_stat.calculate_class_width() == 0
-    assert integer_stat.calculate_class_width() == 1.7320508075688774
+    assert integer_stat.calculate_class_width() == 1.5
     assert floating_stat.calculate_class_width() == 1.6366429289625386
     assert big_stat.calculate_class_width() == 14.682285155394313

@@ -57,7 +57,7 @@ class Statistics:
             amount_classes = 1 + 3.3 * math.log10(len(self.dataset))    #sturges-rule
         else:
             amount_classes = math.sqrt(len(self.dataset))
-        return amount_classes
+        return math.ceil(amount_classes)
 
     def calculate_span_width(self):
         if self.dataset == []:
@@ -76,7 +76,6 @@ class Statistics:
 
     def classify_dataset(self):
         classified_dataset = {}
-
 
 
     def full_run(self):
