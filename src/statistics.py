@@ -68,6 +68,8 @@ class Statistics:
 
     def calculate_class_width(self):
         amount_classes = self.calculate_amount_classes()
+        if amount_classes == 0:
+            return 0
         span_width = self.calculate_span_width()
         class_width = span_width/amount_classes
         return class_width
@@ -77,5 +79,12 @@ class Statistics:
 
 
 
+    def full_run(self):
+        print("Full run")
+        return  "\n".join(map(str, ((self.calculate_absolute_frequencies(), self.calculate_relative_frequencies(),
+                self.calculate_and_bundle_absolute_frequencies(), self.calculate_and_bundle_relative_frequencies(),
+                self.calculate_absolute_sum_frequency(0), self.calculate_relative_sum_frequency(0),
+                self.calculate_absolute_sum_frequency(len(self.dataset)-1), self.calculate_relative_sum_frequency(len(self.dataset)-1),
+                self.calculate_amount_classes(), self.calculate_span_width(), self.calculate_class_width()))))
 
 
